@@ -1,0 +1,10 @@
+---
+
+Fn::FileData:
+- name: pt-income-version
+  files:
+  - version.properties
+
+Deploys:
+  - path: ./k8resources/
+    NoRollingUpdate: true

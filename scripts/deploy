@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+# Script used as deployment entrypoint
+
+set -e
+
+echo "build version: " $VERSION
+
+if [ ! -z "${VERSION}" -a "${VERSION}" != " " ]; then
+	mkdir -p tmp
+	echo -n "${VERSION}" > tmp/version
+else
+	VERSION=`cat tmp/version`
+fi
+
+echo "deploying version: " $VERSION
+
+DEPLOY_SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+DEPLOY_HOME=${DEPLOY_SCRIPT_DIR}/..
+KUBECONFIG=${KUBECONFIG:-~/.kube/config}
+unset ENV
+
+echo "after unset version is " $VERSION
+
+cd ${DEPLOY_HOME}
+
+if [ "${1}" == "DIND" ]; then
+# running Docker in Docker; this means the script is ebing executed in a Docker container which in turn
+# means that the deployment should be performed.
+  shift
+  echo "Running DIND: with params: '$@' in dir ${PWD}..."
+else
+  echo "Running PRE-DIND with params:'$@' in dir ${PWD}..."
+  term=
+  if [ -t 0 ] ; then
+    # Interactive TTY
+    term=t
+    echo "TTY"
+  else
+    echo "NO TTY"
+  fi
+  mkdir -p ./tmp
+  echo "copying kubecfg from ${KUBECONFIG}"
+  cp ${KUBECONFIG} ./tmp/kubecfg
+  ls tmp
+
+  echo "version is ${VERSION}"
+
+  # The image that is created here is never pushed to a repo it is only used locally.
+  # Unique name...
+  DOCKER_TAG=temporary_image_for_executing_the_deployment
+
+  # Build image to deploy from, use Docker file in services folder where this script should be run from.
+  docker build -t ${DOCKER_TAG} .
+
+  echo "Term param = ${term}"
+
+  # Run a container to execute the deployment.
+  docker run \
+    -i${term} \
+    --rm=true \
+    -e KUBECONFIG=/var/lib/app_deploy/tmp/kubecfg \
+    ${DOCKER_TAG} \
+    DIND $@
+
+  echo "Deploy Success!"
+  exit 0
+fi
+
+if [ "${1}" == "debug" ]; then
+  bash -i
+  exit 0
+fi
+echo "Using kubeconfig:${KUBECONFIG}"
+/var/lib/kb8or/kb8or.rb $@
