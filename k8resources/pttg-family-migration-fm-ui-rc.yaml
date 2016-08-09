@@ -9,7 +9,7 @@ metadata:
 spec:
   replicas: 1
   selector:
-    name: pttg-income-proving-fmui
+    name: pttg-income-proving-fm-ui
   template:
     metadata:
       labels:
