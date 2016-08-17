@@ -121,7 +121,7 @@ spec:
           - mountPath: /data
             name: javapki
       - name: pttg-ip-fm-ui
-        image: quay.io/ukhomeofficedigital/pttg-income-proving-fm-ui:${pt-income-version}
+        image: quay.io/ukhomeofficedigital/pttg-ip-fm-ui:${pt-income-version}
         resources:
           limits:
             cpu: 200m
