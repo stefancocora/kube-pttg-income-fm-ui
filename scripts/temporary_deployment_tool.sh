@@ -2,7 +2,7 @@
 
 # temporary script in place until https://github.com/UKHomeOffice/kb8or/issues/93 if fixed
 APP_PREFIX='fm-ui'
-RC='rc/pttg-income-proving-'"${APP_PREFIX}"
+RC='rc/pttg-ip-'"${APP_PREFIX}"
 RCFILE='k8resources/pttg-family-migration-fm-ui-rc.yaml'
 RCTIMEOUT='5m'
 APPNAME='pttg-income-proving-'"${APP_PREFIX}"
@@ -11,7 +11,7 @@ NAMESPACE='pt-i-dev'
 # find a better way to do it
 KUBECTL_FLAGS='-s https://kube-dev.dsp.notprod.homeoffice.gov.uk --insecure-skip-tls-verify=true --namespace='"${NAMESPACE}"' --token=0225CE5B-C9C8-4F3B-BE49-3217B65B41B8'
 
-SVC='svc/pttg-income-proving-'"$APP_PREFIX"
+SVC='svc/pttg-ip-'"$APP_PREFIX"
 SVCFILE='k8resources/pttg-family-migration-fm-ui-svc.yaml'
 SVC_NODE_PORT_FILE='environments/dev.yaml'
 
