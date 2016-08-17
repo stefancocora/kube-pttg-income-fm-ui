@@ -3,7 +3,7 @@
 Fn::FileData:
 - name: pt-income-version
   files:
-  - version.properties
+  - ./tmp/version
 
 Deploys:
   - path: ./k8resources/
