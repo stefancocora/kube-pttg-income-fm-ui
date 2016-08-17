@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # temporary script in place until https://github.com/UKHomeOffice/kb8or/issues/93 if fixed
-APP_PREFIX='ui'
+APP_PREFIX='fm-ui'
 RC='rc/pttg-income-proving-'"${APP_PREFIX}"
 RCFILE='k8resources/pttg-family-migration-fm-ui-rc.yaml'
 RCTIMEOUT='5m'
@@ -18,7 +18,7 @@ SVC_NODE_PORT_FILE='environments/dev.yaml'
 function rc() {
   echo "=== deploying RC: ${RC}"
   sed -i 's|${.*pt-income-version.*}|'"${VERSION}"'|g' ${RCFILE}
-  sed -i 's|${.*pttg_income_proving_ui_port.*}|'"$SVC_NODE_PORT"'|g' $SVCFILE
+  sed -i 's|${.*pttg_income_proving_fm_ui_port.*}|'"$SVC_NODE_PORT"'|g' $SVCFILE
   ./kubectl ${KUBECTL_FLAGS} get ${RC} 2>&1 |grep -q "not found"
   if [[ $? -eq 1 ]];
   then
