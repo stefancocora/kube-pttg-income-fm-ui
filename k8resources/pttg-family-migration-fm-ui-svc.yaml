@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     name: pttg-income-proving-fm-ui
-  name: pttg-income-proving-fm-ui
+  name: pttg-ip-fm-ui
 spec:
   type: NodePort
   ports:
