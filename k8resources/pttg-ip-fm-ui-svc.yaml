@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: pttg-income-proving-fm-ui
+    name: pttg-ip-fm-ui
   name: pttg-ip-fm-ui
 spec:
   type: NodePort
@@ -10,6 +10,6 @@ spec:
   - name: https
     port: 443
     targetPort: https
-    nodePort: ${pttg_income_proving_fm_ui_port}
+    nodePort: ${pttg_ip_fm_ui_port}
   selector:
-    name: pttg-income-proving-fm-ui
+    name: pttg-ip-fm-ui

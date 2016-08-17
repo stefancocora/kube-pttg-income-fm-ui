@@ -10,4 +10,4 @@ echo "deploy triggered by commit : ${GIT_COMMIT} on repo: ${GIT_URL} on branch $
 echo "I will deploy version: $VERSION"
 
 # running kb8or
-./scripts/deploy -e dev ./pttg-family-migration-fm-ui.yaml
+./scripts/deploy -e dev ./pttg-ip-fm-ui.yaml
