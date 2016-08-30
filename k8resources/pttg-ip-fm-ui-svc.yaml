@@ -9,6 +9,8 @@ spec:
   ports:
   - name: https
     port: 443
+  - name: http
+    port: 80
     targetPort: https
     nodePort: ${pttg_ip_fm_ui_port}
   selector:

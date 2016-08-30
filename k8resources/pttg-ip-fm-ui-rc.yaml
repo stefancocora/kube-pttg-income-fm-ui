@@ -82,6 +82,8 @@ spec:
             value: /etc/nginx/secrets/pttg-income-proving-fm-ui-bundle.pem
           - name: SERVER_KEY
             value: /etc/nginx/secrets/pttg-income-proving-fm-ui-key.pem
+          - name: LOG_FORMAT_NAME
+            value: text
         volumeMounts:
           - name: secrets
             mountPath: /etc/nginx/secrets
