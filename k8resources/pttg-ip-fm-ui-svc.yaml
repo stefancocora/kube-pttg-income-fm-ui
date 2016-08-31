@@ -10,8 +10,10 @@ spec:
   - name: https
     port: 443
     targetPort: https
-    nodePort: ${pttg_ip_fm_ui_port}
+    nodePort: ${pttg_ip_fm_ui_tls_port}
   - name: http
     port: 80
+    targetPort: http
+    nodePort: ${pttg_ip_fm_ui_http_port}
   selector:
     name: pttg-ip-fm-ui

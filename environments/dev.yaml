@@ -1,3 +1,4 @@
 ---
 Kb8Context: pt-i-dev
-pttg_ip_fm_ui_port: 30703
+pttg_ip_fm_ui_tls_port: 30703
+pttg_ip_fm_ui_http_port: 30702
