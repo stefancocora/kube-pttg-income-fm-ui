@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    ingress.kubernetes.io/secure-backends: "true"
+  name: pttg-ip-fm-ui
+spec:
+  rules:
+  - host: ${ingress-ext-url}
+    http:
+      paths:
+      - backend:
+          serviceName: pttg-ip-fm-ui
+          servicePort: 443
+        path: /
+  - host: www.${ingress-ext-url}
+    http:
+      paths:
+      - backend:
+          serviceName: pttg-ip-fm-ui
+          servicePort: 443
+        path: /
+  tls:
+  - hosts:
+    - ${ingress-ext-url}
+    - www.${ingress-ext-url}
+    secretName: letsencrypt-tls
