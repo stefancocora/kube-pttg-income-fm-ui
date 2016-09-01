@@ -1,7 +1,0 @@
----
-Kb8Context: pt-i-dev
-pttg_ip_fm_ui_port: 30703
-ingress-ext-url: pttg-ip-fm-ui-dev.notprod.homeoffice.gov.uk
-nginx-proxy-tag: v1.1.5
-vault-sidekick-tag: v0.2.0
-vaultjks-tag: v0.1.0

@@ -1,3 +1,4 @@
+---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -7,14 +8,14 @@ metadata:
   name: pttg-ip-fm-ui
 spec:
   rules:
-  - host: ${ingress-ext-url}
+  - host: pttg-ip-fm-ui-dev.notprod.homeoffice.gov.uk
     http:
       paths:
       - backend:
           serviceName: pttg-ip-fm-ui
           servicePort: 443
         path: /
-  - host: www.${ingress-ext-url}
+  - host: www.pttg-ip-fm-ui-dev.notprod.homeoffice.gov.uk
     http:
       paths:
       - backend:
@@ -23,6 +24,6 @@ spec:
         path: /
   tls:
   - hosts:
-    - ${ingress-ext-url}
-    - www.${ingress-ext-url}
+    - pttg-ip-fm-ui-dev.notprod.homeoffice.gov.uk
+    - www.pttg-ip-fm-ui-dev.notprod.homeoffice.gov.uk
     secretName: letsencrypt-tls
