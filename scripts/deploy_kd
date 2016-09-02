@@ -18,25 +18,25 @@ ENVIRONMENT='dev'
 APP='pttg-ip-fm-ui'
 
 function getKd() {
-echo "checking if the desired kd version exists"
-if [[ -e ${KD_BINARY} ]] && [[ $(md5sum ${KD_BINARY} | awk '{print $1}') = ${KD_MD5} ]];
-then
-	echo "kd already exists locally and it is the wanted version, moving on ..."
-else
-	echo "downloading kd version: ${KD_VERSION}"
-	curl -sLO "${KD_DOWLOAD_ADDR}" && chmod a+x ./${KD_BINARY}
-fi
+	echo "checking if the desired kd version exists"
+	if [[ -e ${KD_BINARY} ]] && [[ $(md5sum ${KD_BINARY} | awk '{print $1}') = ${KD_MD5} ]];
+	then
+		echo "kd already exists locally and it is the wanted version, moving on ..."
+	else
+		echo "downloading kd version: ${KD_VERSION}"
+		curl -sLO "${KD_DOWLOAD_ADDR}" && chmod a+x ./${KD_BINARY}
+	fi
 }
 
 function getKubectl() {
-echo "checking if the desired kubectl version exists"
-if [[ -e ${KUBECTL_BINARY} ]] && [[ $(md5sum ${KUBECTL_BINARY} | awk '{print $1}') = ${KUBECTL_MD5} ]];
-then
-	echo "kubectl already exists locally and it is the wanted version, moving on ..."
-else
-	echo "downloading kubectl version: ${KUBECTL_VERSION}"
-	curl -sLO "${KUBECTL_DOWNLOAD_ADDR}" && chmod a+x ./${KUBECTL_BINARY}
-fi
+	echo "checking if the desired kubectl version exists"
+	if [[ -e ${KUBECTL_BINARY} ]] && [[ $(md5sum ${KUBECTL_BINARY} | awk '{print $1}') = ${KUBECTL_MD5} ]];
+	then
+		echo "kubectl already exists locally and it is the wanted version, moving on ..."
+	else
+		echo "downloading kubectl version: ${KUBECTL_VERSION}"
+		curl -sLO "${KUBECTL_DOWNLOAD_ADDR}" && chmod a+x ./${KUBECTL_BINARY}
+	fi
 }
 
 function archiveGitCommit() {
@@ -58,8 +58,8 @@ export PATH=$PWD:$PATH
 kubectl version --client
 
 echo "deploying ..."
-export VERSION=${VERSION}
-export ENVIRONMENT=${ENVIRONMENT}
+export VERSION
+export ENVIRONMENT
 echo "deploying ingress"
 ./kd_linux_amd64 --context=pt-i-dev --namespace=pt-i-dev --file kd/${ENVIRONMENT}/${APP}-ingress.yaml
 echo "deploying a deployment"
