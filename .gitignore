@@ -2,3 +2,5 @@
 .idea
 tmp/kubecfg
 *.iml
+kubectl
+kd_linux_amd64
